@@ -1,0 +1,41 @@
+{
+  "name": "@template/shared",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./format": "./src/format.ts",
+    "./date": "./src/date.ts",
+    "./tree": "./src/tree.ts",
+    "./cache": "./src/cache.ts",
+    "./query-helpers": "./src/query-helpers.ts",
+    "./query-keys": "./src/query-keys.ts",
+    "./result": "./src/result.ts",
+    "./sanitize": "./src/sanitize.ts",
+    "./validators": "./src/validators.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.74.4",
+    "react": "^19.0.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.13",
+    "sanitize-html": "^2.13.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@tanstack/react-query": "^5.74.4",
+    "@template/config": "workspace:*",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/sanitize-html": "^2.13.0",
+    "react": "^19.0.0",
+    "typescript": "^5",
+    "vitest": "^4.1.4"
+  }
+}
