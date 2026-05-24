@@ -13,7 +13,7 @@ import Stack from '@mui/material/Stack';
 import CustomTextField from '@template/ui/CustomTextField';
 import { notifyError, notifySuccess } from '@template/ui/notifications';
 import * as React from 'react';
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 
 import {
   ROLE_LABELS,
@@ -39,6 +39,7 @@ export default function UserDialog({ open, onClose, user }: UserDialogProps) {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors, isSubmitting, isDirty },
   } = useForm<UserValues>({
     resolver: zodResolver(userSchema),
@@ -107,20 +108,25 @@ export default function UserDialog({ open, onClose, user }: UserDialogProps) {
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="role">Role</FormLabel>
-              <CustomTextField
-                {...register('role')}
-                id="role"
-                select
-                defaultValue={user?.role ?? 'user'}
-                error={!!errors.role}
-                helperText={errors.role?.message}
-              >
-                {USER_ROLES.map((r) => (
-                  <MenuItem key={r} value={r}>
-                    {ROLE_LABELS[r]}
-                  </MenuItem>
-                ))}
-              </CustomTextField>
+              <Controller
+                name="role"
+                control={control}
+                render={({ field }) => (
+                  <CustomTextField
+                    {...field}
+                    id="role"
+                    select
+                    error={!!errors.role}
+                    helperText={errors.role?.message}
+                  >
+                    {USER_ROLES.map((r) => (
+                      <MenuItem key={r} value={r}>
+                        {ROLE_LABELS[r]}
+                      </MenuItem>
+                    ))}
+                  </CustomTextField>
+                )}
+              />
             </FormControl>
           </Stack>
         </DialogContent>

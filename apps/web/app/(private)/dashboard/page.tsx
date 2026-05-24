@@ -54,37 +54,36 @@ export default function DashboardPage() {
         ))}
       </Grid>
 
-      <Typography component="h3" variant="subtitle2" sx={{ mb: 1 }}>
+      <Typography component="h3" variant="subtitle2" sx={{ mb: 2 }}>
         Recent users
       </Typography>
-      <Box sx={{ height: 400, width: '100%' }}>
-        <DataGrid
-          {...DATA_GRID_DEFAULTS}
-          rows={users.slice(0, 5)}
-          loading={isLoading}
-          columns={[
-            {
-              field: 'name',
-              headerName: 'Name',
-              flex: 1,
-              renderCell: (p) => <PrimaryCell value={p.value} />,
-            },
-            {
-              field: 'email',
-              headerName: 'Email',
-              flex: 1,
-              renderCell: (p) => <SecondaryCell value={p.value} />,
-            },
-            {
-              field: 'created_at',
-              headerName: 'Joined',
-              width: 160,
-              renderCell: (p) => <DateCell value={p.value} />,
-            },
-          ]}
-          hideFooter
-        />
-      </Box>
+      <DataGrid
+        {...DATA_GRID_DEFAULTS}
+        rows={users.slice(0, 5)}
+        loading={isLoading}
+        autoHeight
+        columns={[
+          {
+            field: 'name',
+            headerName: 'Name',
+            flex: 1,
+            renderCell: (p) => <PrimaryCell value={p.value} />,
+          },
+          {
+            field: 'email',
+            headerName: 'Email',
+            flex: 1,
+            renderCell: (p) => <SecondaryCell value={p.value} />,
+          },
+          {
+            field: 'created_at',
+            headerName: 'Joined',
+            width: 160,
+            renderCell: (p) => <DateCell value={p.value} />,
+          },
+        ]}
+        hideFooter
+      />
     </Box>
   );
 }

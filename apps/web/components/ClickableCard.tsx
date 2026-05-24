@@ -10,10 +10,16 @@ import type { ReactNode } from 'react';
 
 interface ClickableCardProps {
   href?: string;
+  /** Treat `href` as an external URL (opens in a new tab). */
+  external?: boolean;
   children: ReactNode;
 }
 
-export default function ClickableCard({ href, children }: ClickableCardProps) {
+export default function ClickableCard({
+  href,
+  external = false,
+  children,
+}: ClickableCardProps) {
   if (!href) {
     return (
       <Card variant="outlined" sx={{ height: '100%' }}>
@@ -21,6 +27,10 @@ export default function ClickableCard({ href, children }: ClickableCardProps) {
       </Card>
     );
   }
+
+  const linkProps = external
+    ? { component: 'a' as const, href, target: '_blank', rel: 'noopener noreferrer' }
+    : { component: Link, href };
 
   return (
     <Card
@@ -49,8 +59,7 @@ export default function ClickableCard({ href, children }: ClickableCardProps) {
         })}
       />
       <CardActionArea
-        component={Link}
-        href={href}
+        {...linkProps}
         sx={{
           height: '100%',
           display: 'block',
