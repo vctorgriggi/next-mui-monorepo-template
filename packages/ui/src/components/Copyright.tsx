@@ -19,7 +19,7 @@ export default function Copyright() {
       }}
     >
       <Typography variant="caption" color="text.secondary">
-        © Template {new Date().getFullYear()}
+        © Your Organization {new Date().getFullYear()}
       </Typography>
     </Box>
   );
