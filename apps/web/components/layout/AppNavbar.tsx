@@ -7,8 +7,9 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import { tabsClasses } from '@mui/material/Tabs';
 import MuiToolbar from '@mui/material/Toolbar';
-import { ColorModeIconDropdown } from '@template/ui/theme';
 import { useState } from 'react';
+
+import { ColorModeIconDropdown } from '@template/ui/theme';
 
 import Logo from '@/components/Logo';
 import type { UserProps } from '@/layouts/Dshb';

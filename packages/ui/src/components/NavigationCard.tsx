@@ -1,7 +1,7 @@
 'use client';
 
-import Card from '@mui/material/Card';
 import type { CardProps } from '@mui/material/Card';
+import Card from '@mui/material/Card';
 import type { Theme } from '@mui/material/styles';
 import Link from 'next/link';
 

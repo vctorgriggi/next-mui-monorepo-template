@@ -1,7 +1,8 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import EmptyState from '@template/ui/EmptyState';
 import Link from 'next/link';
+
+import EmptyState from '@template/ui/EmptyState';
 
 import { APP_ROUTES } from '@/constants/app-routes';
 

@@ -11,6 +11,9 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    include: ['**/*.test.ts'],
+    include: ['**/*.test.ts', '**/*.test.tsx'],
+    // Don't fail the suite when the app has no tests yet — features are
+    // free to add their own as they grow.
+    passWithNoTests: true,
   },
 });

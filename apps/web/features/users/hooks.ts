@@ -1,6 +1,7 @@
 'use client';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
 import { useOptionalQuery } from '@template/shared/query-helpers';
 import { fromResult } from '@template/shared/result';
 

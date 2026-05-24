@@ -8,13 +8,14 @@ import type {} from '@mui/x-data-grid/themeAugmentation';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
+import { type ReactNode } from 'react';
+
 import Copyright from '@template/ui/Copyright';
 import {
   AppTheme,
   dataGridCustomizations,
   datePickersCustomizations,
 } from '@template/ui/theme';
-import { type ReactNode } from 'react';
 
 import AppNavbar from '@/components/layout/AppNavbar';
 import { BreadcrumbProvider } from '@/components/layout/BreadcrumbContext';

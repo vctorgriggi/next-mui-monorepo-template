@@ -9,11 +9,12 @@ import FormLabel from '@mui/material/FormLabel';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import * as React from 'react';
+import { type SubmitHandler, useForm, useWatch } from 'react-hook-form';
+
 import CustomTextField from '@template/ui/CustomTextField';
 import { FormGrid } from '@template/ui/FormGrid';
 import { notifyError, notifySuccess } from '@template/ui/notifications';
-import * as React from 'react';
-import { type SubmitHandler, useForm, useWatch } from 'react-hook-form';
 
 import {
   accountSchema,

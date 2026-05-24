@@ -1,6 +1,7 @@
 'use client';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
 import { fromResult } from '@template/shared/result';
 
 import { fetchMyAccount, updateMyAccount } from './actions';

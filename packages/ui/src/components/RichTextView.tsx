@@ -1,6 +1,7 @@
 'use client';
 
 import Box from '@mui/material/Box';
+
 import { sanitizeRichTextHtml } from '@template/shared/sanitize';
 
 import { richTextSx } from './richTextStyles';

@@ -1,0 +1,16 @@
+# Lockfiles — generated, don't format manually
+pnpm-lock.yaml
+
+# Build output
+.next/
+out/
+build/
+dist/
+
+# Tooling caches
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# Coverage
+coverage/

@@ -23,7 +23,9 @@ describe('failure', () => {
 
   it('returns a value assignable to any Result<T> (compile-time, sanity-check at runtime)', () => {
     // If this function compiles, `Failure` is assignable to `Result<unknown>`.
-    function consume(_r: ReturnType<typeof success<number>> | ReturnType<typeof failure>) {}
+    function consume(
+      _r: ReturnType<typeof success<number>> | ReturnType<typeof failure>,
+    ) {}
     consume(failure('boom'));
     consume(success(1));
   });

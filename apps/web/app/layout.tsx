@@ -1,9 +1,9 @@
-import './globals.css';
-
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import NotificationsProvider from '@/providers/NotificationsProvider';
+
+import './globals.css';
 
 const inter = Inter({
   variable: '--font-inter',

@@ -10,10 +10,11 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
-import CustomTextField from '@template/ui/CustomTextField';
-import { notifyError, notifySuccess } from '@template/ui/notifications';
 import * as React from 'react';
 import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
+
+import CustomTextField from '@template/ui/CustomTextField';
+import { notifyError, notifySuccess } from '@template/ui/notifications';
 
 import {
   ROLE_LABELS,

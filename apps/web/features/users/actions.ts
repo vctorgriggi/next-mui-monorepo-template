@@ -1,8 +1,9 @@
 'use server';
 
+import { z } from 'zod';
+
 import { failure, type Result, success } from '@template/shared/result';
 import { validateInput } from '@template/shared/validators';
-import { z } from 'zod';
 
 import { nextUserId, usersStore } from './data';
 import type { User } from './types';

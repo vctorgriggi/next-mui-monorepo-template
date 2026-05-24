@@ -9,11 +9,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import CustomTextField from '@template/ui/CustomTextField';
-import { notifySuccess } from '@template/ui/notifications';
 import * as React from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
+
+import CustomTextField from '@template/ui/CustomTextField';
+import { notifySuccess } from '@template/ui/notifications';
 
 interface ForgotPasswordProps {
   open: boolean;

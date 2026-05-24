@@ -1,8 +1,9 @@
 'use client';
 
 import Box from '@mui/material/Box';
-import ErrorState from '@template/ui/ErrorState';
 import { useEffect } from 'react';
+
+import ErrorState from '@template/ui/ErrorState';
 
 interface ErrorPageProps {
   error: Error & { digest?: string };

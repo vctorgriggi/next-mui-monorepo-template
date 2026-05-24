@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { DataGrid } from '@mui/x-data-grid';
+
 import {
   DateCell,
   PrimaryCell,

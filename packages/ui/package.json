@@ -29,6 +29,7 @@
     "./theme": "./src/theme/index.ts"
   },
   "scripts": {
+    "lint": "eslint",
     "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
@@ -62,9 +63,11 @@
     "@mui/x-data-grid": "^7.23.5",
     "@mui/x-date-pickers": "^7.23.3",
     "@template/config": "workspace:*",
+    "@template/eslint-config": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "eslint": "^9.24.0",
     "next": "^15.5.12",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
