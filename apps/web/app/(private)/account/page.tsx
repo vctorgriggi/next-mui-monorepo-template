@@ -150,7 +150,11 @@ export default function AccountPage() {
                   return (
                     <Stack spacing={2}>
                       <Stack direction="row" spacing={2} alignItems="center">
-                        <Avatar sx={{ width: 56, height: 56 }}>
+                        <Avatar
+                          src={account.avatar_url ?? undefined}
+                          alt={previewName}
+                          sx={{ width: 56, height: 56 }}
+                        >
                           {previewName.charAt(0)}
                         </Avatar>
                         <Stack spacing={0.5}>
