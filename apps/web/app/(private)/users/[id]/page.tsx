@@ -19,7 +19,7 @@ import { notifyError, notifySuccess } from '@template/ui/notifications';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import * as React from 'react';
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 
 import ArrowBackLink from '@/components/ArrowBackLink';
 import { useBreadcrumbs } from '@/components/layout/BreadcrumbContext';
@@ -49,6 +49,7 @@ export default function UserDetailPage() {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors, isSubmitting, isDirty },
   } = useForm<UserValues>({ resolver: zodResolver(userSchema) });
 
@@ -122,20 +123,25 @@ export default function UserDetailPage() {
                   </FormControl>
                   <FormControl>
                     <FormLabel htmlFor="role">Role</FormLabel>
-                    <CustomTextField
-                      {...register('role')}
-                      id="role"
-                      select
-                      defaultValue={user.role}
-                      error={!!errors.role}
-                      helperText={errors.role?.message}
-                    >
-                      {USER_ROLES.map((r) => (
-                        <MenuItem key={r} value={r}>
-                          {ROLE_LABELS[r]}
-                        </MenuItem>
-                      ))}
-                    </CustomTextField>
+                    <Controller
+                      name="role"
+                      control={control}
+                      render={({ field }) => (
+                        <CustomTextField
+                          {...field}
+                          id="role"
+                          select
+                          error={!!errors.role}
+                          helperText={errors.role?.message}
+                        >
+                          {USER_ROLES.map((r) => (
+                            <MenuItem key={r} value={r}>
+                              {ROLE_LABELS[r]}
+                            </MenuItem>
+                          ))}
+                        </CustomTextField>
+                      )}
+                    />
                   </FormControl>
                 </FormGrid.Inputs>
               </FormGrid.CardContent>

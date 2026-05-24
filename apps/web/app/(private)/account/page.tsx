@@ -143,26 +143,33 @@ export default function AccountPage() {
                 <Typography variant="subtitle2" sx={{ mb: 2 }}>
                   Preview
                 </Typography>
-                <Stack spacing={2}>
-                  <Stack direction="row" spacing={2} alignItems="center">
-                    <Avatar sx={{ width: 56, height: 56 }}>
-                      {(watched.name ?? account.name).charAt(0)}
-                    </Avatar>
-                    <Stack spacing={0.5}>
-                      <Typography variant="body2" fontWeight={500}>
-                        {watched.name ?? account.name}
-                      </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        {watched.email ?? account.email}
-                      </Typography>
+                {(() => {
+                  const previewName = watched.name ?? account.name;
+                  const previewEmail = watched.email ?? account.email;
+                  const previewBio = watched.bio ?? account.bio;
+                  return (
+                    <Stack spacing={2}>
+                      <Stack direction="row" spacing={2} alignItems="center">
+                        <Avatar sx={{ width: 56, height: 56 }}>
+                          {previewName.charAt(0)}
+                        </Avatar>
+                        <Stack spacing={0.5}>
+                          <Typography variant="body2" fontWeight={500}>
+                            {previewName}
+                          </Typography>
+                          <Typography variant="caption" color="text.secondary">
+                            {previewEmail}
+                          </Typography>
+                        </Stack>
+                      </Stack>
+                      {previewBio && (
+                        <Typography variant="body2" color="text.secondary">
+                          {previewBio}
+                        </Typography>
+                      )}
                     </Stack>
-                  </Stack>
-                  {(watched.bio || account.bio) && (
-                    <Typography variant="body2" color="text.secondary">
-                      {watched.bio ?? account.bio}
-                    </Typography>
-                  )}
-                </Stack>
+                  );
+                })()}
               </FormGrid.CardContent>
             </FormGrid.Card>
           </FormGrid.Aside>
