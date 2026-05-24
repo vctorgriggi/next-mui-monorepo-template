@@ -5,9 +5,7 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./format": "./src/format.ts",
     "./date": "./src/date.ts",
-    "./tree": "./src/tree.ts",
     "./cache": "./src/cache.ts",
     "./query-helpers": "./src/query-helpers.ts",
     "./query-keys": "./src/query-keys.ts",

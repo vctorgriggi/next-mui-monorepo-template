@@ -26,10 +26,7 @@ const forgotPasswordSchema = z.object({
 
 type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
 
-export default function ForgotPassword({
-  open,
-  onClose,
-}: ForgotPasswordProps) {
+export default function ForgotPassword({ open, onClose }: ForgotPasswordProps) {
   const {
     register,
     handleSubmit,
@@ -68,8 +65,8 @@ export default function ForgotPassword({
         sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}
       >
         <DialogContentText>
-          Enter the email tied to your account and we'll send instructions to
-          reset your password.
+          Enter the email tied to your account and we&apos;ll send instructions
+          to reset your password.
         </DialogContentText>
         <FormControl>
           <FormLabel htmlFor="email">Email</FormLabel>

@@ -5,9 +5,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
 import { alpha } from '@mui/material/styles';
 import type {} from '@mui/x-data-grid/themeAugmentation';
-import type {} from '@mui/x-date-pickers/themeAugmentation';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import type {} from '@mui/x-date-pickers/themeAugmentation';
 import Copyright from '@template/ui/Copyright';
 import {
   AppTheme,

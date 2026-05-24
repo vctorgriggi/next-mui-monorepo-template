@@ -122,7 +122,13 @@ function IconTile({ children }: { children: React.ReactNode }) {
   );
 }
 
-function TileBody({ title, description }: { title: string; description: string }) {
+function TileBody({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
   return (
     <Stack spacing={0.5}>
       <Typography variant="subtitle2">{title}</Typography>
@@ -183,10 +189,7 @@ export default function AboutPage() {
                   sx={{ pr: 3 }}
                 >
                   <IconTile>{doc.icon}</IconTile>
-                  <TileBody
-                    title={doc.title}
-                    description={doc.description}
-                  />
+                  <TileBody title={doc.title} description={doc.description} />
                 </Stack>
               </CardContent>
             </ClickableCard>
@@ -202,7 +205,12 @@ export default function AboutPage() {
         <Grid size={{ xs: 12, sm: 6 }}>
           <ClickableCard href={REPO_URL} external>
             <CardContent>
-              <Stack direction="row" spacing={2} alignItems="flex-start" sx={{ pr: 3 }}>
+              <Stack
+                direction="row"
+                spacing={2}
+                alignItems="flex-start"
+                sx={{ pr: 3 }}
+              >
                 <IconTile>
                   <AccountTreeRoundedIcon fontSize="small" />
                 </IconTile>

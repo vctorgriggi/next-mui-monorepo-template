@@ -87,7 +87,7 @@ apps/
 
 packages/
   ui/        # @template/ui      — MUI components + theme
-  shared/    # @template/shared  — Result, query helpers, format/date/tree, validators
+  shared/    # @template/shared  — Result, query helpers, date, validators
   config/    # @template/config  — base tsconfigs
 
 docs/        # Conventions, design system, access control, environments, git workflow

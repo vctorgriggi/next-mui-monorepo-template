@@ -43,7 +43,7 @@ apps/
   web/        # The dashboard app — :3000
 packages/
   ui/         # @template/ui     — MUI components + theme
-  shared/     # @template/shared — Result, query helpers, format/date/tree
+  shared/     # @template/shared — Result, query helpers, date
   config/     # @template/config — base tsconfigs
 ```
 
@@ -54,7 +54,7 @@ packages/
 | Domain logic (users, billing, etc.)    | `apps/web/features/<domain>/`  | `apps/web/features/users/actions.ts`        |
 | Reusable UI component (no domain)      | `packages/ui/src/components/`  | `StatCard`, `ConfirmDialog`, `FilterCard`   |
 | MUI theme tweaks                       | `packages/ui/src/theme/`       | `AppTheme`, `customizations/dataGrid.ts`    |
-| Pure utility (format, date, tree)      | `packages/shared/src/`         | `format.ts`, `date.ts`, `tree.ts`           |
+| Pure utility (date, etc.)              | `packages/shared/src/`         | `date.ts`                                   |
 | App-specific helper (env, auth, integ) | `apps/web/lib/`                | `apps/web/lib/auth/permissions.ts`          |
 
 **Rule of thumb:** if more than one app would import it, push it to `packages/`. Otherwise it belongs to the app.
@@ -301,27 +301,13 @@ The visual rulebook lives in [`design-patterns.md`](design-patterns.md) — pale
 
 `packages/shared/src/validators.ts`:
 - `uuidSchema` — `z.string().uuid('Invalid ID')`. Use when an ID column is a real UUID.
-- `validateInput(schema, data)` — runs `safeParse`, returns `Result<never>` on failure, `undefined` on success.
+- `validateInput(schema, data)` — runs `safeParse`, returns a `Failure` on invalid (assignable to any `Result<T>`), `undefined` on valid.
 
-### Format & date
+### Dates
 
-| Helper                       | Output                       |
-| ---------------------------- | ---------------------------- |
-| `formatNumber(1500)`         | `"1.5K"`                     |
-| `formatNumber(1_500_000)`    | `"1.5M"`                     |
-| `formatDate(iso)`            | `"15 Mar 2026"`              |
-| `formatDateTime(iso)`        | `"15 Mar 2026 at 14:30"`     |
+| Helper                       | Output                         |
+| ---------------------------- | ------------------------------ |
+| `formatDate(iso)`            | `"15 Mar 2026"`                |
+| `formatDateTime(iso)`        | `"15 Mar 2026 at 14:30"`       |
 | `formatRelative(iso)`        | `"2 days ago"` / `"in 3 days"` |
-| `formatDateWithRelative(iso)`| `"15 Mar 2026 (2 days ago)"` |
-
-### Tree
-
-`packages/shared/src/tree.ts` — for hierarchical structures (file trees, nav menus, etc.):
-
-| Function                  | When to use                              | Input format                           |
-| ------------------------- | ---------------------------------------- | -------------------------------------- |
-| `buildTreeFromPaths`      | Items with `/`-separated paths           | `{ path: 'A/B/C' }`                    |
-| `buildTreeFromParentPath` | Items that already know their parent     | `{ path, parent_path }`                |
-| `filterRelevantNodes`     | Filter, keep ancestors of matching items | Items with `parent_path` for chain-up  |
-
-`filterRelevantNodes` walks the `parent_path` chain (not a path split) so titles containing `/` (e.g. `"Banking/Operations"`) don't accidentally break the hierarchy.
+| `formatDateWithRelative(iso)`| `"15 Mar 2026 (2 days ago)"`   |

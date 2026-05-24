@@ -1,12 +1,29 @@
-export type Result<T> =
-  | { success: true; data: T }
-  | { success: false; error: string };
+/**
+ * Either-style return type used by every server action. Carries a typed
+ * `data` on success and a plain string `error` on failure — no thrown
+ * exceptions cross the wire.
+ */
+export type Result<T> = Success<T> | Failure;
 
-export function success<T>(data: T): Result<T> {
+export interface Success<T> {
+  success: true;
+  data: T;
+}
+
+export interface Failure {
+  success: false;
+  error: string;
+}
+
+export function success<T>(data: T): Success<T> {
   return { success: true, data };
 }
 
-export function failure<T>(error: string): Result<T> {
+/**
+ * Returns a generic failure value compatible with any `Result<T>` —
+ * callers never need to specify a generic to use it as a return value.
+ */
+export function failure(error: string): Failure {
   return { success: false, error };
 }
 

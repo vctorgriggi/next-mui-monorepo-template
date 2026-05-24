@@ -29,7 +29,12 @@ export default function ClickableCard({
   }
 
   const linkProps = external
-    ? { component: 'a' as const, href, target: '_blank', rel: 'noopener noreferrer' }
+    ? {
+        component: 'a' as const,
+        href,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      }
     : { component: Link, href };
 
   return (

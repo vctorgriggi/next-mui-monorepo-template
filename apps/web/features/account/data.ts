@@ -15,6 +15,6 @@ export const currentAccount: Account = {
   id: 'mock-user-id',
   name: 'Demo User',
   email: 'demo@example.com',
-  avatar_url: null,
+  avatar_url: 'https://github.com/vctorgriggi.png',
   bio: 'Just exploring the template.',
 };
