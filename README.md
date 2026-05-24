@@ -14,7 +14,7 @@ An opinionated starter for building MUI-based dashboards on Next.js 15. Ships wi
 
 ---
 
-## ✨ What's inside
+## ✨ Features
 
 🎨 **MUI dashboard shell** — Sidebar, navbar, dark/light/system mode, deeply customized theme
 🧩 **Feature-based structure** — `actions.ts` / `hooks.ts` / `keys.ts` / `validators.ts` / `types.ts` per feature
@@ -25,7 +25,7 @@ An opinionated starter for building MUI-based dashboards on Next.js 15. Ships wi
 🎭 **Auth pages** — sign in, sign up, forgot password (Zod + RHF, no backend wired)
 🧱 **Compound components** — `FilterCard`, `FormGrid` for filters and form layouts
 📦 **Monorepo** — pnpm workspaces + Turborepo; shared `@template/ui`, `@template/shared`, `@template/config`
-🚦 **GitHub Actions** — lint + test + type-check + build on every PR
+🚦 **GitHub Actions** — format + lint + test + type-check + build on every PR
 
 ---
 
@@ -53,7 +53,7 @@ That's it. The template ships with **mocked data** so every page works out of th
 
 ## 🏗️ Architectural Decisions
 
-This template makes strong, explicit choices. Each is documented in [`docs/`](docs/).
+This template makes **strong, explicit choices**:
 
 ✅ **Feature-based folders** — every domain has the same six files in the same order. No `hooks/` or `services/` lint-bin folders.
 ✅ **`Result<T>` over throws** — server actions return `{ success, data } | { success, error }`. Errors are typed strings, not opaque exceptions.
@@ -62,9 +62,23 @@ This template makes strong, explicit choices. Each is documented in [`docs/`](do
 ✅ **Backend-agnostic** — no Supabase, no NextAuth, no DB locked in. Auth/data adapters live in `RolesProvider`, the middleware, and feature `actions.ts` files — replace at will.
 ✅ **MUI Pro removed** — uses only Community packages; no license key required.
 
-→ Read the deep dive in [`docs/conventions.md`](docs/conventions.md)
-→ UI/UX rules in [`docs/design-patterns.md`](docs/design-patterns.md)
-→ RBAC matrix in [`docs/access-control.md`](docs/access-control.md)
+These decisions are intentional and documented.
+
+---
+
+## 📚 Documentation
+
+The documentation is structured to be read progressively:
+
+**Concepts & Architecture**
+→ [`docs/conventions.md`](docs/conventions.md) — code style, feature structure, data layer, forms
+→ [`docs/design-patterns.md`](docs/design-patterns.md) — visual system, layout shell, component bricks, flows
+→ [`docs/access-control.md`](docs/access-control.md) — RBAC matrix and adapter examples
+→ [`docs/tech-stack.md`](docs/tech-stack.md) — why each library is in the template, and what isn't
+
+**Workflow & Operations**
+→ [`docs/git-workflow.md`](docs/git-workflow.md) — branch model, commits, PRs, hotfixes
+→ [`docs/environments.md`](docs/environments.md) — local, preview, production. Vercel + env var patterns
 
 ---
 
@@ -86,11 +100,12 @@ apps/
     middleware.ts                   # No-op middleware (wire your auth here)
 
 packages/
-  ui/        # @template/ui      — MUI components + theme
-  shared/    # @template/shared  — Result, query helpers, date, validators
-  config/    # @template/config  — base tsconfigs
+  ui/             # @template/ui             — MUI components + theme
+  shared/         # @template/shared         — Result, query helpers, date, validators
+  eslint-config/  # @template/eslint-config  — shared ESLint preset (base + Next)
+  config/         # @template/config         — base tsconfigs
 
-docs/        # Conventions, design system, access control, environments, git workflow
+docs/             # Conventions, design system, access control, environments, git workflow
 ```
 
 Each app imports shared code via `@template/ui`, `@template/shared`. Inside an app, use the `@/` alias (`@/features/users`, `@/lib/auth/permissions`, etc.).
@@ -122,10 +137,11 @@ See [`docs/tech-stack.md`](docs/tech-stack.md) for the why behind each choice.
 | `pnpm --filter @template/web dev` | Run the app at `:3000`              |
 | `pnpm dev`                        | Run every app in parallel           |
 | `pnpm build`                      | Build all apps + packages           |
-| `pnpm lint`                       | ESLint via `next lint` in each app  |
+| `pnpm lint`                       | ESLint across every workspace       |
 | `pnpm test`                       | Vitest in each workspace            |
 | `pnpm type-check`                 | `tsc --noEmit` across the workspace |
 | `pnpm format`                     | Prettier the whole repo             |
+| `pnpm format:check`               | Verify formatting (CI gate)         |
 
 ---
 
@@ -143,6 +159,24 @@ See [`docs/tech-stack.md`](docs/tech-stack.md) for the why behind each choice.
 
 ---
 
-## 📜 License
+## 🤝 Contributing
+
+Contributions are welcome! Open an issue or submit a PR.
+
+---
+
+## 📜 Project Status
+
+This template is actively used and evolved. Breaking changes may happen as patterns improve.
+
+---
+
+## 📄 License
 
 MIT. Use it however you want.
+
+---
+
+**[Issues](https://github.com/vctorgriggi/next-mui-monorepo-template/issues)**
+
+Made with ❤️ by [vctorgriggi](https://github.com/vctorgriggi)
