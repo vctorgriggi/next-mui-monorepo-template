@@ -118,17 +118,29 @@ export default function UsersPage() {
           sx={{ height: '100%' }}
         >
           <Tooltip title="View">
-            <IconButton size="small" onClick={() => setViewing(p.row)}>
+            <IconButton
+              size="small"
+              onClick={() => setViewing(p.row)}
+              aria-label={`View ${p.row.name}`}
+            >
               <VisibilityRoundedIcon fontSize="small" />
             </IconButton>
           </Tooltip>
           <Tooltip title="Edit">
-            <IconButton size="small" onClick={() => setEditing(p.row)}>
+            <IconButton
+              size="small"
+              onClick={() => setEditing(p.row)}
+              aria-label={`Edit ${p.row.name}`}
+            >
               <EditRoundedIcon fontSize="small" />
             </IconButton>
           </Tooltip>
           <Tooltip title="Delete">
-            <IconButton size="small" onClick={() => setDeleting(p.row)}>
+            <IconButton
+              size="small"
+              onClick={() => setDeleting(p.row)}
+              aria-label={`Delete ${p.row.name}`}
+            >
               <DeleteOutlineRoundedIcon fontSize="small" />
             </IconButton>
           </Tooltip>
