@@ -21,7 +21,7 @@ import ClickableCard from '@/components/ClickableCard';
  * Replace this constant with your own repo URL when you fork.
  * Used to point documentation cards at the markdown sources on GitHub.
  */
-const REPO_URL = 'https://github.com/your-org/your-repo';
+const REPO_URL = 'https://github.com/vctorgriggi/next-mui-monorepo-template';
 const DOCS_BASE_URL = `${REPO_URL}/blob/main/docs`;
 
 interface Tile {

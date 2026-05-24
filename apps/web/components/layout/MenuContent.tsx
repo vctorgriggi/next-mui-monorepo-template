@@ -44,8 +44,8 @@ interface BottomLink {
   external?: boolean;
 }
 
-// TODO: replace with your team's issue tracker URL, or remove the link.
-const REPORT_URL = 'https://github.com/your-org/your-repo/issues/new';
+const REPORT_URL =
+  'https://github.com/vctorgriggi/next-mui-monorepo-template/issues/new';
 
 const bottomLinks: BottomLink[] = [
   { text: 'About', icon: <InfoRoundedIcon />, href: APP_ROUTES.private.about },
