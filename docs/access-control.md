@@ -40,18 +40,18 @@ This is the source of truth. The map in `lib/auth/permissions.ts` implements exa
 
 ### Role-restricted pages
 
-| Page          | Route               | `admin` | `editor` | `viewer` | `user` |
-| ------------- | ------------------- | ------- | -------- | -------- | ------ |
-| Dashboard     | `/dashboard`        | ✓       | ✓        | ✓        |        |
-| Users         | `/users`            | ✓       |          |          |        |
-| User detail   | `/users/[id]`       | ✓       |          |          |        |
+| Page        | Route         | `admin` | `editor` | `viewer` | `user` |
+| ----------- | ------------- | ------- | -------- | -------- | ------ |
+| Dashboard   | `/dashboard`  | ✓       | ✓        | ✓        |        |
+| Users       | `/users`      | ✓       |          |          |        |
+| User detail | `/users/[id]` | ✓       |          |          |        |
 
 ### Open pages (any authenticated user)
 
-| Page    | Route       | Why                                           |
-| ------- | ----------- | --------------------------------------------- |
-| Account | `/account`  | Every user manages their own profile          |
-| About   | `/about`    | Public info about the app                     |
+| Page    | Route      | Why                                  |
+| ------- | ---------- | ------------------------------------ |
+| Account | `/account` | Every user manages their own profile |
+| About   | `/about`   | Public info about the app            |
 
 Routes **not present** in `ROUTE_PERMISSIONS` are open to any authenticated user — you don't need to register every path, only the restricted ones.
 
@@ -65,14 +65,14 @@ Routes **not present** in `ROUTE_PERMISSIONS` are open to any authenticated user
 
 ## How it's wired in the frontend
 
-| File                                | Responsibility                                                                  |
-| ----------------------------------- | ------------------------------------------------------------------------------- |
-| `lib/auth/permissions.ts`           | `ROUTE_PERMISSIONS`, `hasAccess()`, `getDefaultRoute()`, `ROLE_LABELS`, `ROLE_COLORS` |
-| `providers/RolesProvider.tsx`       | React Context that exposes the current user's roles                             |
+| File                                | Responsibility                                                                          |
+| ----------------------------------- | --------------------------------------------------------------------------------------- |
+| `lib/auth/permissions.ts`           | `ROUTE_PERMISSIONS`, `hasAccess()`, `getDefaultRoute()`, `ROLE_LABELS`, `ROLE_COLORS`   |
+| `providers/RolesProvider.tsx`       | React Context that exposes the current user's roles                                     |
 | `app/(private)/layout.tsx`          | Server component — fetches the user, fetches roles, wraps the tree with `RolesProvider` |
-| `components/layout/MenuContent.tsx` | Filters sidebar sections and items via `hasAccess()`                             |
-| `components/layout/RouteGuard.tsx`  | Client guard — redirects when the URL is forbidden                              |
-| `layouts/Dshb.tsx`                  | Wraps `children` with `RouteGuard`                                              |
+| `components/layout/MenuContent.tsx` | Filters sidebar sections and items via `hasAccess()`                                    |
+| `components/layout/RouteGuard.tsx`  | Client guard — redirects when the URL is forbidden                                      |
+| `layouts/Dshb.tsx`                  | Wraps `children` with `RouteGuard`                                                      |
 
 ### Check flow
 
@@ -120,7 +120,9 @@ Replace with the shape your auth provider returns. Examples:
 
 ```ts
 const supabase = await createServerClient();
-const { data: { user } } = await supabase.auth.getUser();
+const {
+  data: { user },
+} = await supabase.auth.getUser();
 if (!user) redirect(APP_ROUTES.public.auth.signIn);
 
 const { data } = await supabase
@@ -171,7 +173,13 @@ If the page calls a server action that hits an external API (no DB RLS to back i
 1. **Add the role name** to `ROLE_NAMES` in `lib/auth/permissions.ts`:
 
    ```ts
-   export const ROLE_NAMES = ['admin', 'editor', 'viewer', 'user', 'auditor'] as const;
+   export const ROLE_NAMES = [
+     'admin',
+     'editor',
+     'viewer',
+     'user',
+     'auditor',
+   ] as const;
    ```
 
 2. **Add label + color** to `ROLE_LABELS` and `ROLE_COLORS` (same file).

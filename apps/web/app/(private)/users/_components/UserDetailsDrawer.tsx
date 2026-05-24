@@ -11,10 +11,7 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import Typography from '@mui/material/Typography';
 import { formatDate } from '@template/shared/date';
-import {
-  StyledTableCell,
-  StyledTableRow,
-} from '@template/ui/StyledTable';
+import { StyledTableCell, StyledTableRow } from '@template/ui/StyledTable';
 import Link from 'next/link';
 
 import { AppDrawer } from '@/components/layout/AppDrawer';

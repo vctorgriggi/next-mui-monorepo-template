@@ -21,11 +21,11 @@ How code moves from a feature branch to production. The template assumes a **Git
 
 ## Branch model
 
-| Branch    | Purpose                          | Deploy                       | Direct push | Base for features? |
-| --------- | -------------------------------- | ---------------------------- | ----------- | ------------------ |
-| `develop` | Active development integration   | Preview (Vercel)             | Blocked     | Yes                |
-| `release` | Pre-production validation        | Preview (Vercel)             | Blocked     | No                 |
-| `main`    | Production                       | Production (Vercel)          | Blocked     | No                 |
+| Branch    | Purpose                        | Deploy              | Direct push | Base for features? |
+| --------- | ------------------------------ | ------------------- | ----------- | ------------------ |
+| `develop` | Active development integration | Preview (Vercel)    | Blocked     | Yes                |
+| `release` | Pre-production validation      | Preview (Vercel)    | Blocked     | No                 |
+| `main`    | Production                     | Production (Vercel) | Blocked     | No                 |
 
 Flow:
 
@@ -58,13 +58,13 @@ For each of `develop`, `release`, `main`:
 
 ## Naming conventions
 
-| Prefix      | Use case                                     | Example                            |
-| ----------- | -------------------------------------------- | ---------------------------------- |
-| `feature/`  | New feature                                  | `feature/users-bulk-import`        |
-| `fix/`      | Bug fix                                      | `fix/dashboard-overflow`           |
-| `chore/`    | Maintenance, no functional impact            | `chore/bump-mui`                   |
-| `docs/`     | Docs-only changes                            | `docs/clarify-rbac-matrix`         |
-| `refactor/` | Restructure without behavior changes         | `refactor/extract-auth-shell`      |
+| Prefix      | Use case                             | Example                       |
+| ----------- | ------------------------------------ | ----------------------------- |
+| `feature/`  | New feature                          | `feature/users-bulk-import`   |
+| `fix/`      | Bug fix                              | `fix/dashboard-overflow`      |
+| `chore/`    | Maintenance, no functional impact    | `chore/bump-mui`              |
+| `docs/`     | Docs-only changes                    | `docs/clarify-rbac-matrix`    |
+| `refactor/` | Restructure without behavior changes | `refactor/extract-auth-shell` |
 
 Format: `<prefix>/<short-kebab-case-description>`. Descriptive enough to identify the change without opening the PR.
 
@@ -72,14 +72,14 @@ Format: `<prefix>/<short-kebab-case-description>`. Descriptive enough to identif
 
 Adopt **conventional commits** (or any consistent scheme):
 
-| Prefix      | Use case                                |
-| ----------- | --------------------------------------- |
-| `feat:`     | New feature                             |
-| `fix:`      | Bug fix                                 |
-| `refactor:` | Restructure, no behavior change         |
-| `docs:`     | Docs only                               |
-| `chore:`    | Maintenance (deps, configs)             |
-| `test:`     | Adding or updating tests                |
+| Prefix      | Use case                        |
+| ----------- | ------------------------------- |
+| `feat:`     | New feature                     |
+| `fix:`      | Bug fix                         |
+| `refactor:` | Restructure, no behavior change |
+| `docs:`     | Docs only                       |
+| `chore:`    | Maintenance (deps, configs)     |
+| `test:`     | Adding or updating tests        |
 
 ---
 
@@ -203,16 +203,16 @@ Without this, `develop` and `release` diverge from `main` and the next promotion
 
 ## Never do this
 
-| Don't                                              | Why                                                         |
-| -------------------------------------------------- | ----------------------------------------------------------- |
-| Commit directly to `main`/`release`/`develop`      | Branch protection blocks it; every change needs a PR        |
-| `git push --force` to a permanent branch           | Rewrites history. If unavoidable, force-with-lease and PR  |
-| `git rebase` a published branch                    | Same — use merge                                            |
-| Merge a feature branch directly into `release`     | `release` only receives from `develop`                      |
-| Merge a feature branch directly into `main`        | `main` only receives from `release` (or hotfixes by exception) |
-| `git add -A` without reviewing                     | Catches `.env.local`, build artifacts, sensitive files      |
-| Keep a feature branch open for weeks               | Conflicts accumulate. Small branches, fast merges           |
-| Merge with red CI                                  | Branch protection blocks it; if it doesn't, fix the rule    |
+| Don't                                          | Why                                                            |
+| ---------------------------------------------- | -------------------------------------------------------------- |
+| Commit directly to `main`/`release`/`develop`  | Branch protection blocks it; every change needs a PR           |
+| `git push --force` to a permanent branch       | Rewrites history. If unavoidable, force-with-lease and PR      |
+| `git rebase` a published branch                | Same — use merge                                               |
+| Merge a feature branch directly into `release` | `release` only receives from `develop`                         |
+| Merge a feature branch directly into `main`    | `main` only receives from `release` (or hotfixes by exception) |
+| `git add -A` without reviewing                 | Catches `.env.local`, build artifacts, sensitive files         |
+| Keep a feature branch open for weeks           | Conflicts accumulate. Small branches, fast merges              |
+| Merge with red CI                              | Branch protection blocks it; if it doesn't, fix the rule       |
 
 ---
 

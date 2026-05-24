@@ -27,12 +27,12 @@ Full-stack React framework. The App Router (stable since Next.js 13) gives you s
 
 ### Why
 
-| Factor                  | Reason                                                                                                                |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Full-stack in one repo  | Server actions remove the need for a separate backend layer in many apps. Co-locate or split — your choice.           |
-| Server components       | Heavy pages don't ship the form library or validators to the browser. Smaller bundles, faster first paint.            |
-| Declarative routing     | `(public)` and `(private)` groups separate auth-gated and open routes without manual middleware juggling.             |
-| Ecosystem               | Native Vercel deploy, Turbopack in dev, first-class TypeScript, and tight integration with React Query SSR.           |
+| Factor                 | Reason                                                                                                      |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Full-stack in one repo | Server actions remove the need for a separate backend layer in many apps. Co-locate or split — your choice. |
+| Server components      | Heavy pages don't ship the form library or validators to the browser. Smaller bundles, faster first paint.  |
+| Declarative routing    | `(public)` and `(private)` groups separate auth-gated and open routes without manual middleware juggling.   |
+| Ecosystem              | Native Vercel deploy, Turbopack in dev, first-class TypeScript, and tight integration with React Query SSR. |
 
 ### How the template uses it
 
@@ -67,12 +67,12 @@ Material UI v6 — a comprehensive component library based on Material Design. T
 
 ### Why
 
-| Factor              | Reason                                                                                              |
-| ------------------- | --------------------------------------------------------------------------------------------------- |
-| Productivity        | Pre-built components (DataGrid, DatePicker, etc.) save weeks of work.                               |
-| Consistent surface  | Buttons, inputs, cards, tables all share design tokens. No "looks like five apps" feel.             |
-| Theme system        | One file (`themePrimitives.ts`) drives the whole palette. Dark mode is a token switch, not a fork.  |
-| Long-term support   | Active maintenance, big ecosystem of recipes and Stack Overflow answers.                            |
+| Factor             | Reason                                                                                             |
+| ------------------ | -------------------------------------------------------------------------------------------------- |
+| Productivity       | Pre-built components (DataGrid, DatePicker, etc.) save weeks of work.                              |
+| Consistent surface | Buttons, inputs, cards, tables all share design tokens. No "looks like five apps" feel.            |
+| Theme system       | One file (`themePrimitives.ts`) drives the whole palette. Dark mode is a token switch, not a fork. |
+| Long-term support  | Active maintenance, big ecosystem of recipes and Stack Overflow answers.                           |
 
 ### How the template uses it
 
@@ -232,15 +232,15 @@ For component-level styling, always use MUI's `sx` prop. Mixing Tailwind and `sx
 
 The template avoids decisions that should belong to your specific project. Each is a one-package install when you need it.
 
-| What                       | Why it's out                                                                    |
-| -------------------------- | ------------------------------------------------------------------------------- |
-| **Database / ORM**         | Add Drizzle / Prisma / Kysely when you know your DB. No default punishes a wrong fit. |
-| **Auth provider**          | `RolesProvider` is the seam. Plug Supabase / NextAuth / Auth0 / custom JWT.     |
-| **Email provider**         | Resend / Postmark / SES — pick when you need it.                                |
-| **Analytics**              | PostHog / Plausible / GA4 — depends on privacy posture.                         |
-| **Feature flags**          | GrowthBook / LaunchDarkly / Unleash — depends on scale.                         |
-| **Error monitoring**       | Sentry / Datadog / etc. — the `app/error.tsx` boundary has the `// log here` hook. |
-| **Internationalization**   | next-intl / next-translate — only worth setting up if you actually have >1 locale. |
-| **State management**       | React Query + RHF cover ~95% of use cases. Add Zustand / Jotai only if you hit a wall. |
+| What                     | Why it's out                                                                           |
+| ------------------------ | -------------------------------------------------------------------------------------- |
+| **Database / ORM**       | Add Drizzle / Prisma / Kysely when you know your DB. No default punishes a wrong fit.  |
+| **Auth provider**        | `RolesProvider` is the seam. Plug Supabase / NextAuth / Auth0 / custom JWT.            |
+| **Email provider**       | Resend / Postmark / SES — pick when you need it.                                       |
+| **Analytics**            | PostHog / Plausible / GA4 — depends on privacy posture.                                |
+| **Feature flags**        | GrowthBook / LaunchDarkly / Unleash — depends on scale.                                |
+| **Error monitoring**     | Sentry / Datadog / etc. — the `app/error.tsx` boundary has the `// log here` hook.     |
+| **Internationalization** | next-intl / next-translate — only worth setting up if you actually have >1 locale.     |
+| **State management**     | React Query + RHF cover ~95% of use cases. Add Zustand / Jotai only if you hit a wall. |
 
 Each of these is a 10-minute integration. Adding all of them upfront is a 10-hour cleanup later.

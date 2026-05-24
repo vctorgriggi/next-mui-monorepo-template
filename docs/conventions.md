@@ -21,18 +21,18 @@ The template is a **Next.js 15 (App Router) + React 19 + MUI 6** app, organized 
 
 These are intentional, codebase-wide choices.
 
-| Decision         | Choice                            | Why                                                                                                   |
-| ---------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Organization     | Feature-based                     | Each domain owns its `actions`/`hooks`/`keys`/`validators`/`types`. No `hooks/` lint-bin folders.     |
-| Server actions   | `Result<T>` over `throw`          | Exceptions in server actions arrive on the client as generic errors. `Result` keeps the message.     |
-| Query helpers    | `fromResult` + `useOptionalQuery` | Eliminates the unwrap-Result + enabled + queryKey boilerplate that repeats in every hook.            |
-| State management | React Query + React Hook Form     | No Redux, no Context for server data. RQ owns the cache, RHF owns forms. Global client state ≈ 0.   |
-| Validation       | Zod schemas                       | One schema validates the form (`zodResolver`), types the input (`z.infer`), and supplies messages.   |
-| Auth / data      | Adapter, not built-in             | `RolesProvider`, `middleware.ts`, and feature `actions.ts` are the seams. Plug any backend.          |
-| Styling          | MUI `sx` + Tailwind for layout    | `sx` for MUI components (respects theme tokens). Tailwind only in `globals.css` and raw HTML.        |
-| Text inputs      | `CustomTextField` wrapper         | Centralizes a11y and visual tweaks. Reaching for raw `TextField` skips them.                         |
-| Icons            | `Rounded` suffix                  | `HomeRoundedIcon`, not `HomeIcon`. Mixing icon families breaks visual consistency.                   |
-| Nullish fallback | `??`, never `\|\|`                | `\|\|` swallows valid `0`, `""`, `false`. `??` only acts on `null`/`undefined`.                      |
+| Decision         | Choice                            | Why                                                                                                |
+| ---------------- | --------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Organization     | Feature-based                     | Each domain owns its `actions`/`hooks`/`keys`/`validators`/`types`. No `hooks/` lint-bin folders.  |
+| Server actions   | `Result<T>` over `throw`          | Exceptions in server actions arrive on the client as generic errors. `Result` keeps the message.   |
+| Query helpers    | `fromResult` + `useOptionalQuery` | Eliminates the unwrap-Result + enabled + queryKey boilerplate that repeats in every hook.          |
+| State management | React Query + React Hook Form     | No Redux, no Context for server data. RQ owns the cache, RHF owns forms. Global client state ≈ 0.  |
+| Validation       | Zod schemas                       | One schema validates the form (`zodResolver`), types the input (`z.infer`), and supplies messages. |
+| Auth / data      | Adapter, not built-in             | `RolesProvider`, `middleware.ts`, and feature `actions.ts` are the seams. Plug any backend.        |
+| Styling          | MUI `sx` + Tailwind for layout    | `sx` for MUI components (respects theme tokens). Tailwind only in `globals.css` and raw HTML.      |
+| Text inputs      | `CustomTextField` wrapper         | Centralizes a11y and visual tweaks. Reaching for raw `TextField` skips them.                       |
+| Icons            | `Rounded` suffix                  | `HomeRoundedIcon`, not `HomeIcon`. Mixing icon families breaks visual consistency.                 |
+| Nullish fallback | `??`, never `\|\|`                | `\|\|` swallows valid `0`, `""`, `false`. `??` only acts on `null`/`undefined`.                    |
 
 ---
 
@@ -49,13 +49,13 @@ packages/
 
 ### Where new code goes
 
-| Code type                              | Lives in                       | Example                                     |
-| -------------------------------------- | ------------------------------ | ------------------------------------------- |
-| Domain logic (users, billing, etc.)    | `apps/web/features/<domain>/`  | `apps/web/features/users/actions.ts`        |
-| Reusable UI component (no domain)      | `packages/ui/src/components/`  | `StatCard`, `ConfirmDialog`, `FilterCard`   |
-| MUI theme tweaks                       | `packages/ui/src/theme/`       | `AppTheme`, `customizations/dataGrid.ts`    |
-| Pure utility (date, etc.)              | `packages/shared/src/`         | `date.ts`                                   |
-| App-specific helper (env, auth, integ) | `apps/web/lib/`                | `apps/web/lib/auth/permissions.ts`          |
+| Code type                              | Lives in                      | Example                                   |
+| -------------------------------------- | ----------------------------- | ----------------------------------------- |
+| Domain logic (users, billing, etc.)    | `apps/web/features/<domain>/` | `apps/web/features/users/actions.ts`      |
+| Reusable UI component (no domain)      | `packages/ui/src/components/` | `StatCard`, `ConfirmDialog`, `FilterCard` |
+| MUI theme tweaks                       | `packages/ui/src/theme/`      | `AppTheme`, `customizations/dataGrid.ts`  |
+| Pure utility (date, etc.)              | `packages/shared/src/`        | `date.ts`                                 |
+| App-specific helper (env, auth, integ) | `apps/web/lib/`               | `apps/web/lib/auth/permissions.ts`        |
 
 **Rule of thumb:** if more than one app would import it, push it to `packages/`. Otherwise it belongs to the app.
 
@@ -132,9 +132,7 @@ Every server action returns `Result<T>` — never throws. Exceptions in Next.js 
 
 ```ts
 // packages/shared/src/result.ts
-type Result<T> =
-  | { success: true; data: T }
-  | { success: false; error: string };
+type Result<T> = { success: true; data: T } | { success: false; error: string };
 ```
 
 Use `success(data)` and `failure(message)` to build them:
@@ -144,7 +142,7 @@ Use `success(data)` and `failure(message)` to build them:
 'use server';
 export async function fetchUserById(id: string): Promise<Result<User>> {
   const invalid = validateInput(idSchema, id);
-  if (invalid) return invalid;       // already a Result<never>
+  if (invalid) return invalid; // already a Result<never>
   const user = usersStore.get(id);
   if (!user) return failure('User not found');
   return success(user);
@@ -224,8 +222,7 @@ export const userKeys = createQueryKeys('users');
 const base = createQueryKeys('campaigns');
 export const campaignKeys = {
   ...base,
-  snapshots: (id: string) =>
-    [...base.all, 'detail', id, 'snapshots'] as const,
+  snapshots: (id: string) => [...base.all, 'detail', id, 'snapshots'] as const,
 };
 ```
 
@@ -300,14 +297,15 @@ The visual rulebook lives in [`design-patterns.md`](design-patterns.md) — pale
 ### Validators
 
 `packages/shared/src/validators.ts`:
+
 - `uuidSchema` — `z.string().uuid('Invalid ID')`. Use when an ID column is a real UUID.
 - `validateInput(schema, data)` — runs `safeParse`, returns a `Failure` on invalid (assignable to any `Result<T>`), `undefined` on valid.
 
 ### Dates
 
-| Helper                       | Output                         |
-| ---------------------------- | ------------------------------ |
-| `formatDate(iso)`            | `"15 Mar 2026"`                |
-| `formatDateTime(iso)`        | `"15 Mar 2026 at 14:30"`       |
-| `formatRelative(iso)`        | `"2 days ago"` / `"in 3 days"` |
-| `formatDateWithRelative(iso)`| `"15 Mar 2026 (2 days ago)"`   |
+| Helper                        | Output                         |
+| ----------------------------- | ------------------------------ |
+| `formatDate(iso)`             | `"15 Mar 2026"`                |
+| `formatDateTime(iso)`         | `"15 Mar 2026 at 14:30"`       |
+| `formatRelative(iso)`         | `"2 days ago"` / `"in 3 days"` |
+| `formatDateWithRelative(iso)` | `"15 Mar 2026 (2 days ago)"`   |

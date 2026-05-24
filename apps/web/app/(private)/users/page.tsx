@@ -25,8 +25,8 @@ import * as React from 'react';
 import {
   ROLE_COLORS,
   ROLE_LABELS,
-  type User,
   useDeleteUser,
+  type User,
   useUsers,
 } from '@/features/users';
 
@@ -73,11 +73,7 @@ export default function UsersPage() {
       headerName: 'Role',
       width: 120,
       renderCell: (p) => (
-        <Stack
-          direction="row"
-          alignItems="center"
-          sx={{ height: '100%' }}
-        >
+        <Stack direction="row" alignItems="center" sx={{ height: '100%' }}>
           <Chip
             label={ROLE_LABELS[p.row.role]}
             color={ROLE_COLORS[p.row.role]}
@@ -92,11 +88,7 @@ export default function UsersPage() {
       headerName: 'Status',
       width: 110,
       renderCell: (p) => (
-        <Stack
-          direction="row"
-          alignItems="center"
-          sx={{ height: '100%' }}
-        >
+        <Stack direction="row" alignItems="center" sx={{ height: '100%' }}>
           <Chip
             label={p.row.active ? 'Active' : 'Inactive'}
             color={p.row.active ? 'success' : 'default'}

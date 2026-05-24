@@ -17,11 +17,11 @@ This guide covers the local, preview, and production environments and the workfl
 
 ## Overview
 
-| Environment | Where it runs        | Data             | Deploy                          |
-| ----------- | -------------------- | ---------------- | ------------------------------- |
-| Local       | `localhost:3000`     | Seed / mock      | Manual (`pnpm dev`)             |
-| Preview     | Vercel (per branch)  | Test / seed      | Automatic on every branch push  |
-| Production  | Vercel               | Real             | Automatic on merge to `main`    |
+| Environment | Where it runs       | Data        | Deploy                         |
+| ----------- | ------------------- | ----------- | ------------------------------ |
+| Local       | `localhost:3000`    | Seed / mock | Manual (`pnpm dev`)            |
+| Preview     | Vercel (per branch) | Test / seed | Automatic on every branch push |
+| Production  | Vercel              | Real        | Automatic on merge to `main`   |
 
 Local + preview should share a non-production data source (mocked, a dev DB, a sandbox tenant). Production has its own credentials and is the only environment touching real user data.
 
@@ -186,17 +186,17 @@ When you add a new env var, list it in `turbo.json`'s `tasks.build.env` array. T
 
 ## Commands reference
 
-| Action                | Command                                |
-| --------------------- | -------------------------------------- |
-| Install deps          | `pnpm install`                         |
-| Dev (single app)      | `pnpm --filter @template/web dev`      |
-| Dev (all apps)        | `pnpm dev`                             |
-| Lint                  | `pnpm lint`                            |
-| Format                | `pnpm format`                          |
-| Type-check            | `pnpm type-check`                      |
-| Test                  | `pnpm test`                            |
-| Build                 | `pnpm build`                           |
-| Serve local build     | `pnpm --filter @template/web start`    |
+| Action            | Command                             |
+| ----------------- | ----------------------------------- |
+| Install deps      | `pnpm install`                      |
+| Dev (single app)  | `pnpm --filter @template/web dev`   |
+| Dev (all apps)    | `pnpm dev`                          |
+| Lint              | `pnpm lint`                         |
+| Format            | `pnpm format`                       |
+| Type-check        | `pnpm type-check`                   |
+| Test              | `pnpm test`                         |
+| Build             | `pnpm build`                        |
+| Serve local build | `pnpm --filter @template/web start` |
 
 ---
 
@@ -204,12 +204,12 @@ When you add a new env var, list it in `turbo.json`'s `tasks.build.env` array. T
 
 ### Secrets
 
-| Rule                                       | Why                                                                  |
-| ------------------------------------------ | -------------------------------------------------------------------- |
-| Never commit `.env.local`                  | Already gitignored, but `git add -A` can sneak it in                 |
-| `NEXT_PUBLIC_*` is public by design        | Anything with this prefix ends up in the browser bundle              |
-| Never alias a secret with `NEXT_PUBLIC_`   | The bundler will happily inline it                                   |
-| Production secrets live on Vercel only    | Never put them in the repo, never share via chat                     |
+| Rule                                     | Why                                                     |
+| ---------------------------------------- | ------------------------------------------------------- |
+| Never commit `.env.local`                | Already gitignored, but `git add -A` can sneak it in    |
+| `NEXT_PUBLIC_*` is public by design      | Anything with this prefix ends up in the browser bundle |
+| Never alias a secret with `NEXT_PUBLIC_` | The bundler will happily inline it                      |
+| Production secrets live on Vercel only   | Never put them in the repo, never share via chat        |
 
 ### Rollback (Vercel)
 
