@@ -32,9 +32,9 @@ An opinionated starter for building MUI-based dashboards on Next.js 15. Ships wi
 ## 🚀 Quick Start
 
 ```bash
-# Clone
-git clone <your-fork-url>
-cd <your-folder>
+# Use the "Use this template" button on GitHub, or clone directly:
+git clone https://github.com/vctorgriggi/next-mui-monorepo-template.git
+cd next-mui-monorepo-template
 
 # Enable pnpm (one-time, via corepack which ships with Node 20+)
 corepack enable
